@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1-2</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ejercicio 2</h1>
+      <p>
+        La N.A.S.A. está realizando un proyecto sobre el estudio de las
+        partículas H en nuestro Sistema Solar. Para ello han colocado unas
+        antenas especiales en cada uno de los nueve planetas siguientes:
+        Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano, Neptuno y
+        Plutón (codificados con números del 0 al 8), distribuidas de manera
+        uniforme a lo largo del ecuador de los mismos. Cada antena es capaz de
+        detectar la cantidad de partículas H que impactan sobre el área que
+        cubre la antena. Realizar un programa php con una función llamada
+        planeta_con_mas_particulasH, que recibiendo como parámetro de entrada un
+        array (llamado $particulas, cargarlo con nueve números que usted desee)
+        con el total de partículas H que han impactado en cada uno de los 9
+        planetas, devuelva, como valor de retorno, el número del planeta (entre
+        0 y 8) donde se han detectado más partículas H. Realizar otra función
+        llamada planeta_con_menos_particulasH igual que la anterior, pero donde
+        devuelva el planeta donde se detectó menos partículas H. Por último,
+        otra función en donde devuelva el promedio de partículas en los 9
+        planetas.
+      </p>
+      <h3>
+        En el script principal deberá imprimir: El planeta X es donde se
+        detectaron más partículas H. El planeta Y es donde se detectaron menos
+        partículas H. El promedio de partículas H es NNNN.
+      </h3>
+    </div>
+    <form action="procesar_particulas.php" method="POST" id="form">
+      <label for="particulas"
+        >Ingrese las partículas H que chocan con el planeta
+        <span id="planeta">Mercurio</span>:</label
+      >
+      <input type="number" id="particulas" name="particulas" required />
+      <button onclick="cambiarNombrePlaneta()">Cargar</button>
+      <input type="submit" />
+    </form>
+
+    <script>
+      const planetaSelect = document.getElementById("planeta");
+      const particulasInput = document.getElementById("particulas");
+
+      // Nombres de los planetas
+      const planetas = [
+        "Mercurio",
+        "Venus",
+        "Tierra",
+        "Marte",
+        "Júpiter",
+        "Saturno",
+        "Urano",
+        "Neptuno",
+        "Plutón",
+      ];
+
+      // Función para cambiar el nombre del planeta
+      function cambiarNombrePlaneta() {
+        const valorParticulas = parseInt(particulasInput.value);
+        const indicePlaneta = Math.min(
+          planetas.length - 1,
+          Math.max(0, valorParticulas)
+        );
+        planetaSelect.textContent = planetas[indicePlaneta];
+      }
+
+      // Escuchar el evento de cambio en el campo de entrada
+      particulasInput.addEventListener("input", cambiarNombrePlaneta);
+    </script>
+  </body>
+</html>

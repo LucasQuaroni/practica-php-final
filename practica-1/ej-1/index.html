@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Ejercicio 1</h1>
+    <p>Ingresar por medio de un programa HTML un valor entero N. Luego llamar por
+        el método POST a un programa PHP, que genere un vector $vec de N
+        elementos, el cual contenga los primeros N números naturales primos.
+        Realizar este procedimiento dentro de una función. Finalmente imprimir el
+        vector en el script original.</p>
+    <form action="generarPrimos.php" method="POST" id="form">
+        <label for="numero">Ingrese un numero entero:</label>
+        <input type="number" id="numero" name="numero" required>
+        <input type="submit" value="Generar">
+    </form>
+</body>
+
+</html>
