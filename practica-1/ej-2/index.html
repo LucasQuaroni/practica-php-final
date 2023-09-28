@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1-2</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style2.css">
   </head>
   <body>
     <div class="container">
@@ -34,45 +34,44 @@
         partículas H. El promedio de partículas H es NNNN.
       </h3>
     </div>
-    <form action="procesar_particulas.php" method="POST" id="form">
-      <label for="particulas"
-        >Ingrese las partículas H que chocan con el planeta
-        <span id="planeta">Mercurio</span>:</label
-      >
-      <input type="number" id="particulas" name="particulas" required />
-      <button onclick="cambiarNombrePlaneta()">Cargar</button>
-      <input type="submit" />
-    </form>
-
-    <script>
-      const planetaSelect = document.getElementById("planeta");
-      const particulasInput = document.getElementById("particulas");
-
-      // Nombres de los planetas
-      const planetas = [
-        "Mercurio",
-        "Venus",
-        "Tierra",
-        "Marte",
-        "Júpiter",
-        "Saturno",
-        "Urano",
-        "Neptuno",
-        "Plutón",
-      ];
-
-      // Función para cambiar el nombre del planeta
-      function cambiarNombrePlaneta() {
-        const valorParticulas = parseInt(particulasInput.value);
-        const indicePlaneta = Math.min(
-          planetas.length - 1,
-          Math.max(0, valorParticulas)
-        );
-        planetaSelect.textContent = planetas[indicePlaneta];
-      }
-
-      // Escuchar el evento de cambio en el campo de entrada
-      particulasInput.addEventListener("input", cambiarNombrePlaneta);
-    </script>
+    <form action="planetas.php" method="post">
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Mercurio</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Venus</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Tierra</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Marte</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Júpiter</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Saturno</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Urano</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Neptuno</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <div class="linea">
+        <label for="particulas">Partículas H del planeta <span class="planet">Plutón</span>:</label>
+        <input type="number" name="particulas" id="particulas" required>
+      </div>
+      <input type="submit" value="Enviar" id="btn">
+  </form>
   </body>
 </html>
