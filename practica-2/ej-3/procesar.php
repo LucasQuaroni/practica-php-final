@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Práctica 2</h1>
+    <h1>Práctica 2 - Ej. 3</h1>
     <p>Cargar dos vectores con números al azar de 6 elementos cada uno. El primer vector se llama $origen y el segundo
         $destino. Debe realizar una función que informe la cantidad de elementos repetidos que hay en cada vector, y
         además la posición que ocupa en ambos vectores. </p>
