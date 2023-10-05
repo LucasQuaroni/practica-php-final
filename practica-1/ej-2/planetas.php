@@ -53,7 +53,8 @@
 
                 $planeta_mas = planeta_con_mas_particulasH($particulas);
                 $planeta_menos = planeta_con_menos_particulasH($particulas);
-                $promedio = calculate_average($particulas);
+                $promedio = round(calculate_average($particulas), 2);
+                
 
                 echo "El planeta <span class='planet'>$planetas[$planeta_mas]</span> es donde se detectaron más partículas H.<br>";
                 echo "El planeta <span class='planet'>$planetas[$planeta_menos]</span> es donde se detectaron menos partículas H.<br>";
