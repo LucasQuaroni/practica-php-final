@@ -22,6 +22,7 @@
     </form>
     <div class="result">
         <?php
+        //usar isset
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $origen = explode(",", $_POST["origen"]);
             $destino = explode(",", $_POST["destino"]);
