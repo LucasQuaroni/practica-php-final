@@ -9,41 +9,42 @@
 </head>
 
 <body>
-    <?php
-    if (isset($_POST['numero'])) {
-        $numero = (int) $_POST['numero'];
+    <div class="container">
+        <?php
+        if (isset($_POST['numero'])) {
+            $numero = (int) $_POST['numero'];
 
-        if ($numero > 0) {
-            $vec = array();
-            $num = 2;
+            if ($numero > 0) {
+                $vec = array();
+                $num = 2;
 
-            while (count($vec) < $numero) {
-                $isPrime = true;
-                for ($i = 2; $i <= sqrt($num); $i++) {
-                    if ($num % $i == 0) {
-                        $isPrime = false;
-                        break;
+                while (count($vec) < $numero) {
+                    $isPrime = true;
+                    for ($i = 2; $i <= sqrt($num); $i++) {
+                        if ($num % $i == 0) {
+                            $isPrime = false;
+                            break;
+                        }
                     }
+                    if ($isPrime) {
+                        $vec[] = $num;
+                    }
+                    $num++;
                 }
-                if ($isPrime) {
-                    $vec[] = $num;
-                }
-                $num++;
-            }
 
-            echo '<h2>Números primos generados:</h2>';
-            echo '<ul>';
-            foreach ($vec as $prime) {
-                echo '<li>' . $prime . '</li>';
+                echo '<h2>Números primos generados:</h2>';
+                echo '<br>';
+                foreach ($vec as $primo) {
+                    echo '<span>' . $primo . ', </span>';
+                }
+            } else {
+                echo '<p>El número debe ser mayor que 0</p>';
             }
-            echo '</ul>';
         } else {
-            echo '<p>El número debe ser mayor que 0</p>';
+            echo '<p>El parámetro "numero" no se proporcionó</p>';
         }
-    } else {
-        echo '<p>El parámetro "numero" no se proporcionó</p>';
-    }
-    ?>
+        ?>
+    </div>
     <a href="index.html" id="volver">VOLVER</a>
 </body>
 

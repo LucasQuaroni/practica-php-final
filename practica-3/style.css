@@ -30,7 +30,19 @@ p {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.gris {
+  background-color: darkgray;
+}
+
+.gris b {
+  color: black;
+}
+
+.negro {
+  background-color: black;
 }

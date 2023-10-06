@@ -34,3 +34,15 @@ input {
     color: black;
     text-align: center;
 }
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#volver {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+}

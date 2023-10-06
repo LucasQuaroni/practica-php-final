@@ -18,6 +18,7 @@
         $incremento = 0.01;
         $inicio = 0.00;
         $fin = 2;
+        $color = false;
 
         for ($i = $inicio; $i <= $fin + 0.01; $i += $incremento) {
             $seno = sin($i);
@@ -25,10 +26,17 @@
             $class = ($seno >= 0 && $coseno >= 0) ? "positive" : "negative";
             $formato_i = number_format($i, 2);
 
-            echo "<li class='$class'><b>Ángulo:</b> $formato_i ---  <b>Seno:</b> $seno ---  <b>Coseno:</b> $coseno</li>";
+            if ($color) {
+                echo "<li style='background-color: lightgray;' class='$class'><b>Ángulo:</b> $formato_i ---  <b>Seno:</b> $seno ---  <b>Coseno:</b> $coseno</li>";
+                $color = false;
+            } else {
+                echo "<li style='background-color: black; color: white;' class='$class'><b>Ángulo:</b> $formato_i ---  <b>Seno:</b> $seno ---  <b>Coseno:</b> $coseno</li>";
+                $color = true;
+            }
         }
         ?>
     </ul>
+
 
 </body>
 
