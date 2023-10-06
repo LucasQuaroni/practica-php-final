@@ -1,0 +1,59 @@
+/* Estilo general para el fondo oscuro */
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para los enlaces */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para las tablas */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #ffffff;
+}
+
+/* Estilos para los encabezados */
+h1, h2, h3 {
+    color: #ffffff;
+}
+
+/* Estilos para los botones */
+button {
+ height: 3rem;  
+ width: 10rem;
+ border-radius: 5px;
+ font-size: 1.2rem;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.linea {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    align-items: center;
+}

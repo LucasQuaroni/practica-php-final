@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Viajes</title>
     <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
     <div class="container">
         <h1>Consulta de Viajes</h1>
@@ -35,38 +37,53 @@
             </tr>
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Obtener los valores del formulario
                 $localidad = $_POST['localidad'];
                 $mes = $_POST['mes'];
                 $anio = $_POST['anio'];
 
-                $db = new PDO("mysql:host=localhost;dbname=trafico", "root", "");
+                // Conectarse a la base de datos (ajusta los valores según tu configuración)
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "trafico";
 
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+                if (!$conn) {
+                    die("Conexión fallida: " . mysqli_connect_error());
+                }
+
+                // Consulta SQL para obtener la cantidad de kilos según los criterios
                 $sql = "SELECT
                             CASE
-                                WHEN LocOrigen = :loc THEN 'Origen'
-                                WHEN LocDestino = :loc THEN 'Destino'
+                                WHEN LocOrigen = '$localidad' THEN 'Origen'
+                                WHEN LocDestino = '$localidad' THEN 'Destino'
                             END AS OrigenDestino,
-                            SUM(CASE WHEN LocDestino = :loc THEN Cantkg ELSE -Cantkg END) AS TotalKilos
+                            SUM(CASE WHEN LocDestino = '$localidad' THEN Cantkg ELSE -Cantkg END) AS TotalKilos
                         FROM Viajes
-                        WHERE MONTH(FecViaje) = :mes AND YEAR(FecViaje) = :anio
-                        AND (:loc = LocOrigen OR :loc = LocDestino)
+                        WHERE MONTH(FecViaje) = '$mes' AND YEAR(FecViaje) = '$anio'
+                        AND ('$localidad' = LocOrigen OR '$localidad' = LocDestino)
                         GROUP BY OrigenDestino";
 
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam(":loc", $localidad, PDO::PARAM_INT);
-                $stmt->bindParam(":mes", $mes, PDO::PARAM_INT);
-                $stmt->bindParam(":anio", $anio, PDO::PARAM_INT);
-                $stmt->execute();
+                $result = mysqli_query($conn, $sql);
 
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>";
-                    echo "<td>" . $row['OrigenDestino'] . "</td>";
-                    echo "<td>" . $row['TotalKilos'] . "</td>";
-                    echo "</tr>";
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $row['OrigenDestino'] . "</td>";
+                        echo "<td>" . $row['TotalKilos'] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "Error en la consulta: " . mysqli_error($conn);
                 }
+
+                mysqli_close($conn);
             }
             ?>
         </table>
     </div>
 </body>
+
 </html>
