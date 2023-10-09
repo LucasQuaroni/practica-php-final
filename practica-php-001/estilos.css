@@ -2,10 +2,10 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  font-family: Arial, sans-serif;
   margin: 20px;
   background-color: black;
   color: white;
@@ -13,14 +13,21 @@ body {
 
 h1 {
   text-align: center;
+  color: lightblue;
+}
+
+p {
+  text-align: center;
+  color: lightblue;
 }
 
 form {
-  text-align: center;
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  justify-content: space-between;
 }
 
 .container {
@@ -53,13 +60,13 @@ table {
   border-collapse: collapse;
   width: 80%;
   margin: 20px auto;
-  color: black;
 }
 
 table,
 th,
 td {
   border: 1px solid black;
+  color: black;
 }
 
 th,
@@ -69,9 +76,18 @@ td {
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: white;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+tr {
+  background-color: white;
+}
+
+#buscar {
+  margin-top: 2rem;
+}
+
+#buscar:hover {
+  background-color: lightblue;
+  color: black;
 }
