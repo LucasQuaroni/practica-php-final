@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1-1</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
@@ -33,15 +33,14 @@
                 }
 
                 echo '<h2>Números primos generados:</h2>';
-                echo '<br>';
+                echo '<div>';
                 foreach ($vec as $primo) {
                     echo '<span>' . $primo . ', </span>';
                 }
+                echo '</div>';
             } else {
                 echo '<p>El número debe ser mayor que 0</p>';
             }
-        } else {
-            echo '<p>El parámetro "numero" no se proporcionó</p>';
         }
         ?>
     </div>
