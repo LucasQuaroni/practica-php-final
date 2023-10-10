@@ -1,0 +1,58 @@
+/* Estilo para el cuerpo de la página */
+body {
+  background-color: #333; /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Estilo para el título */
+h1 {
+  font-size: 36px;
+  margin-top: 100px; /* Espacio superior para centrar verticalmente */
+}
+
+/* Estilo para el botón */
+button {
+  background-color: #555; /* Color de fondo del botón */
+  color: #fff; /* Texto blanco */
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Espacio superior para separar del título */
+}
+
+.informe {
+  background-color: #444; /* Color de fondo para el contenido */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto; /* Centrar horizontalmente */
+  width: 80%; /* Ancho del contenido */
+}
+
+a {
+  color: #fff; /* Texto blanco */
+  text-decoration: none; /* Sin subrayado */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+th {
+  background-color: #555;
+  color: #fff;
+}
+tr:nth-child(even) {
+  background-color: #888;
+}
+tr:nth-child(odd) {
+  background-color: #777;
+}
