@@ -20,15 +20,12 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numEmpleado = $_POST["num_empleado"];
 
-    // Conéctate a la base de datos
     $conexion = new mysqli("localhost", "root", "", "fabrica");
 
-    // Verifica la conexión
     if ($conexion->connect_error) {
       die("Error de conexión: " . $conexion->connect_error);
     }
 
-    // Consulta para obtener el nombre, horas trabajadas y valor de hora del empleado
     $query = "SELECT empleado.nombre, SUM(trabajo.horas) AS HorasTrabajadas, empleado.valorHora, empleado.actualizado 
               FROM empleado
               LEFT JOIN trabajo ON empleado.NumEmpleado = trabajo.NumEmpleado
@@ -47,10 +44,8 @@
       if ($actualizado == "NO") {
         echo '<table>';
         echo '<tr><th>Nombre</th><th>Horas Trabajadas</th><th>Importe Neto</th></tr>';
-        // Calcula el importe neto
         $importeNeto = $horasTrabajadas * $valorHora;
 
-        // Actualiza el campo "Actualizado" a "SI"
         $updateQuery = "UPDATE EMPLEADO SET Actualizado = 'SI' WHERE NumEmpleado = $numEmpleado";
         $conexion->query($updateQuery);
         echo "<tr><td>$nombre</td><td>$horasTrabajadas</td><td>$importeNeto</td></tr>";

@@ -31,7 +31,6 @@
             $mes = $_POST["mes"];
             $anio = $_POST["anio"];
 
-            // Conexión a la base de datos
             $servername = "localhost";
             $username = "root";
             $password = "";
@@ -43,29 +42,24 @@
                 die("Conexión fallida: " . $conn->connect_error);
             }
 
-            // Consulta para obtener los viajes que tuvieron como origen o destino la localidad ingresada
             $sql = "SELECT LocOrigen, LocDestino, Cantkg, FecViaje FROM viajes WHERE (LocOrigen = (SELECT CodLoc FROM Ciudades WHERE NomLoc = '$localidad') OR LocDestino = (SELECT CodLoc FROM Ciudades WHERE NomLoc = '$localidad')) AND MONTH(FecViaje) = $mes AND YEAR(FecViaje) = $anio";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                // Tabla para mostrar los resultados
                 echo "<p>Resultados para la localidad de $localidad, en el período $mes/$anio:</p>";
                 echo "<table><tr><th>Origen</th><th>Destino</th><th>Kilos</th><th>Día</th></tr>";
                 while ($row = $result->fetch_assoc()) {
 
-                    // Consulta para obtener el nombre de la localidad de origen
                     $origen_query = "SELECT NomLoc FROM Ciudades WHERE CodLoc = " . $row["LocOrigen"];
                     $origen_result = $conn->query($origen_query);
                     $origen_row = $origen_result->fetch_assoc();
                     $origen_nombre = $origen_row["NomLoc"];
 
-                    // Consulta para obtener el nombre de la localidad de destino
                     $destino_query = "SELECT NomLoc FROM Ciudades WHERE CodLoc = " . $row["LocDestino"];
                     $destino_result = $conn->query($destino_query);
                     $destino_row = $destino_result->fetch_assoc();
                     $destino_nombre = $destino_row["NomLoc"];
 
-                    // Verificar si la localidad ingresada es el origen o el destino
                     if ($origen_nombre == $localidad) {
                         $origen = "";
                         $kgs = -$row["Cantkg"];

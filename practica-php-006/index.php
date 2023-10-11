@@ -38,7 +38,7 @@
 
             $result = mysqli_query($conexion, $query);
 
-            while ($row = mysqli_fetch_assoc($result)) { //array asociativo
+            while ($row = mysqli_fetch_assoc($result)) { 
                 $cantidadPrestadas = $row['CantidadPrestadas'];
                 $cantidadNoDevueltas = $row['CantidadNoDevueltas'];
 

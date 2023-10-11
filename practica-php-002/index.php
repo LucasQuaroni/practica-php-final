@@ -29,12 +29,10 @@
             die("Conexión fallida: " . $conn->connect_error);
         }
 
-        // Consulta SQL para obtener el capital acumulado por marca
         $sql = "SELECT Marca, SUM(PrecioVenta) AS CapitalAcumulado FROM autos GROUP BY Marca";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Mostrar los resultados en una tabla
             echo "<table border='1'><tr><th>Marca</th><th>Capital Acumulado</th></tr>";
             while ($row = $result->fetch_assoc()) {
                 $capitalFormateado = "$" . number_format($row["CapitalAcumulado"], 0, ".", ".");

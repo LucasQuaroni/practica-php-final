@@ -1,13 +1,10 @@
 <?php
-// Conecta a la base de datos
 $mysqli = new mysqli("localhost", "root", "", "colegio");
 
-// Verifica la conexión
 if ($mysqli->connect_error) {
     die("Error de conexión a la base de datos: " . $mysqli->connect_error);
 }
 
-// Consulta para obtener la información requerida
 $query = "
 SELECT
     A.AluNombre,
@@ -28,11 +25,9 @@ ORDER BY
     A.AluNombre;
 ";
 
-// Ejecuta la consulta
 $resultado = $mysqli->query($query);
 $general = 0;
 
-// Inicia la generación del informe
 $informe = "<h2>Informe de Alumnos</h2>";
 $informe .= "<table border='1'>";
 $informe .= "<tr>";
@@ -44,14 +39,12 @@ $informe .= "</tr>";
 $informe .= "<br>";
 
 
-// Recorre los resultados de la consulta
 while ($fila = $resultado->fetch_assoc()) {
     $informe .= "<tr>";
     $informe .= "<td>" . $fila['AluNombre'] . "</td>";
     $informe .= "<td>" . $fila['VecesRendidas'] . "</td>";
     $informe .= "<td>" . $fila['Aprobados'] . "</td>";
 
-    // Verificar si el promedio es 0 y mostrarlo adecuadamente
     if ($fila['Aprobados'] > 0) {
         $informe .= "<td>" . number_format($fila['PromedioAprobados'], 2) . "</td>";
     } else {
@@ -67,9 +60,8 @@ $promGral = number_format($general, 2);
 
 $informe .= "</table>";
 $informe .= "<p>Total de Alummnos: $sumaAlumnos</p>";
-$informe .= "<p>Promedio General: $promGral</p>";
+$informe .= "<p>Promedio de aprobados general: $promGral</p>";
 
-// Cierra la conexión a la base de datos
 $mysqli->close();
 ?>
 
