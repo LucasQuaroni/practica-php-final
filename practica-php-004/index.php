@@ -51,7 +51,7 @@
         echo "<tr><td>$nombre</td><td>$horasTrabajadas</td><td>$importeNeto</td></tr>";
         echo '</table>';
       } else {
-        echo "<div class='result'><span>Ya actualizado</span></div>";
+        // echo "<div class='result'><span>Ya actualizado</span></div>"; //no hacer nada?? se borra
       }
     } else {
       echo "<div class='result'><span>No se encontró al empleado con el número de empleado proporcionado.</span></div>";

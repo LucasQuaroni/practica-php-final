@@ -38,12 +38,20 @@
 
             $result = mysqli_query($conexion, $query);
 
-            while ($row = mysqli_fetch_assoc($result)) { 
+            $totalPrestadas = 0;
+            $totalDevueltas = 0;
+            $totalStock = 0;
+
+            while ($row = mysqli_fetch_assoc($result)) {
                 $cantidadPrestadas = $row['CantidadPrestadas'];
                 $cantidadNoDevueltas = $row['CantidadNoDevueltas'];
 
                 $cantidadDevueltas = $cantidadPrestadas - $cantidadNoDevueltas;
                 $stockActual = $row['HerSto'] - $cantidadPrestadas + $cantidadDevueltas;
+
+                $totalPrestadas += $cantidadPrestadas;
+                $totalDevueltas += $cantidadDevueltas;
+                $totalStock += $stockActual;
 
                 echo "<tr>";
                 echo "<td>" . $row['HerCod'] . "</td>";
@@ -54,6 +62,13 @@
                 echo "</tr>";
             }
 
+
+
+            echo "<tr>";
+            echo "<td colspan='2'><b>TOTAL:</b></td>";
+            echo "<td>$totalStock</td>";
+            echo "<td>$totalPrestadas</td>";
+            echo "<td>$totalDevueltas</td>";
             mysqli_close($conexion);
         }
         ?>

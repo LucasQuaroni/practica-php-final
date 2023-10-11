@@ -1,31 +1,31 @@
-<?php 
+<?php
 
 require_once 'config/config.php';
 require_once 'model/db.php';
 
-if(!isset($_GET["controller"])) $_GET["controller"] = constant("DEFAULT_CONTROLLER");
-if(!isset($_GET["action"])) $_GET["action"] = constant("DEFAULT_ACTION");
+if (!isset($_GET["controller"])) {
+    include 'view/inicio.php'; // Muestra la página de inicio por defecto
+} else {
+    $controllerName = ucfirst($_GET["controller"]) . 'Controller'; // Convertir la primera letra a mayúscula
 
-$controller_path = 'controller/'.$_GET["controller"].'.php';
+    $controller_path = 'controller/' . $controllerName . '.php';
 
-/* Check if controller exists */
-if(!file_exists($controller_path)) $controller_path = 'controller/'.constant("DEFAULT_CONTROLLER").'.php';
+    /* Check if controller exists */
+    if (!file_exists($controller_path))
+        $controller_path = 'controller/' . constant("DEFAULT_CONTROLLER") . '.php';
 
-/* Load controller */
-require_once $controller_path;
-$controllerName = $_GET["controller"].'Controller';
-$controller = new $controllerName();
+    /* Load controller */
+    require_once $controller_path;
+    $controller = new $controllerName();
 
-/* Check if method is defined */
-$dataToView["data"] = array();
-if(method_exists($controller,$_GET["action"])) $dataToView["data"] = $controller->{$_GET["action"]}();
+    /* Check if method is defined */
+    $dataToView["data"] = array();
+    if (method_exists($controller, $_GET["action"]))
+        $dataToView["data"] = $controller->{$_GET["action"]}();
 
-
-/* Load views */
-require_once 'view/template/header.php';
-require_once 'view/'.$controller->view.'.php';
-require_once 'view/template/footer.php';
-
+    /* Load views */
+    require_once 'view/template/header.php';
+    require_once 'view/' . $controller->view . '.php';
+    require_once 'view/template/footer.php';
+}
 ?>
-<!-- 
-EJERCICIO ADICIONAL (06/10/2023): A partir del ejemplo de MVC suministrado bajo el nombre mvc_example, que refiere a creación, modificación y listado de notas, desarrollar el módulo para creación de usuarios y el módulo de login al sistema (sumarlo a los ejercicios obligatorios para la promoción).  -->

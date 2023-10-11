@@ -31,6 +31,21 @@
             $mes = $_POST["mes"];
             $anio = $_POST["anio"];
 
+            $meses = array(
+                1 => "Enero",
+                2 => "Febrero",
+                3 => "Marzo",
+                4 => "Abril",
+                5 => "Mayo",
+                6 => "Junio",
+                7 => "Julio",
+                8 => "Agosto",
+                9 => "Septiembre",
+                10 => "Octubre",
+                11 => "Noviembre",
+                12 => "Diciembre"
+            );
+
             $servername = "localhost";
             $username = "root";
             $password = "";
@@ -44,10 +59,12 @@
 
             $sql = "SELECT LocOrigen, LocDestino, Cantkg, FecViaje FROM viajes WHERE (LocOrigen = (SELECT CodLoc FROM Ciudades WHERE NomLoc = '$localidad') OR LocDestino = (SELECT CodLoc FROM Ciudades WHERE NomLoc = '$localidad')) AND MONTH(FecViaje) = $mes AND YEAR(FecViaje) = $anio";
             $result = $conn->query($sql);
+            $sumakgs = 0;
 
             if ($result->num_rows > 0) {
-                echo "<p>Resultados para la localidad de $localidad, en el período $mes/$anio:</p>";
-                echo "<table><tr><th>Origen</th><th>Destino</th><th>Kilos</th><th>Día</th></tr>";
+                echo "<p>Localidad Origen ó Destino: $localidad</p>";
+                echo "<p>En el mes de: $meses[$mes] $anio</p>";
+                echo "<table><tr><th>Día</th><th>Origen</th><th>Destino</th><th>Kilos</th></tr>";
                 while ($row = $result->fetch_assoc()) {
 
                     $origen_query = "SELECT NomLoc FROM Ciudades WHERE CodLoc = " . $row["LocOrigen"];
@@ -74,8 +91,14 @@
                         $destino = $destino_nombre;
                     }
 
-                    echo "<tr><td>$origen</td><td>$destino</td><td>$kgs</td><td>" . date("d", strtotime($row["FecViaje"])) . "</td></tr>";
+                    $dia = date("d", strtotime($row["FecViaje"]));
+                    if ($dia[0] == "0") {
+                        $dia = $dia[1];
+                    }
+                    $sumakgs += $kgs;
+                    echo "<tr><td>$dia</td><td>$origen</td><td>$destino</td><td>$kgs</td></tr>";
                 }
+                echo "<tr><td><b>TOTAL:</b></td><td></td><td></td><td><b>$sumakgs</b></td></tr>";
                 echo "</table>";
             } else {
                 echo "No se encontraron resultados.";

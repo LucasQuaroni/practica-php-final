@@ -58,9 +58,9 @@
 
             echo "<h2>El resultado es:</h2>";
             echo "<div class='resultado'>";
-            echo $row_datos['nomtit'] . " fue quien más dinero consumió en <span class='datos'>datos.</span><br>";
-            echo $row_telefonia['nomtit'] . " fue quien más dinero consumió en <span class='telefonia'> telefonía.</span><br>";
-            echo $row_general['nomtit'] . " fue quien más dinero consumió en <span class='general'> general.</span><br>";
+            echo $row_telefonia['nomtit'] . " fue quien más dinero consumió, en $, en <span class='telefonia'> telefonía.</span><br>";
+            echo $row_datos['nomtit'] . " fue quien más dinero consumió, en $, en <span class='datos'>datos.</span><br>";
+            echo $row_general['nomtit'] . " fue quien más dinero consumió, en $, en <span class='general'> general.</span><br>";
             echo "</div>";
         }
         ?>
