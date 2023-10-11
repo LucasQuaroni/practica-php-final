@@ -27,28 +27,23 @@
                     "Plutón"
                 ];
 
-                $valido = true; // Variable para verificar la validez de los datos ingresados
+                $valido = true; 
             
                 for ($i = 0; $i < 9; $i++) {
-                    // Verifica si se ha enviado una cantidad válida
                     if (isset($_POST["particulas$i"])) {
                         $cantidad = intval($_POST["particulas$i"]);
-                        // Verifica si la cantidad es mayor o igual a cero
                         if ($cantidad >= 0) {
                             $particulas[$i] = $cantidad;
                         } else {
-                            $valido = false; // Establece a falso si hay una cantidad negativa
-                            break; // Detiene el bucle si se encuentra una cantidad negativa
+                            $valido = false;
+                            break;
                         }
                     } else {
-                        $particulas[$i] = 0; // Establece 0 si no se proporcionó una cantidad
+                        $particulas[$i] = 0;
                     }
                 }
 
                 if ($valido) {
-                    // Aquí puedes continuar con tus cálculos y mostrar los resultados
-                    // sin preocuparte por valores negativos en $particulas
-            
                     function planeta_con_mas_particulasH($particulas)
                     {
                         $max_particles = max($particulas);
