@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Registro de Usuario</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        p {
+            margin-top: 1rem;
+        }
+
+        body {
+            background-color: black;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Registro de Usuario</h1>
     <?php
     if (isset($data["error"])) {
         echo '<p style="color: red;">' . $data["error"] . '</p>';
@@ -20,7 +37,8 @@
         <input type="password" name="clave" id="clave" required>
         <br>
         <input type="submit" name="action" value="Registrar">
+        <p>¿Ya tienes una cuenta? <a href="index.php?controller=login&action=index">Iniciar sesión</a></p>
     </form>
-    <p>¿Ya tienes una cuenta? <a href="index.php?controller=login">Iniciar sesión</a></p>
 </body>
+
 </html>

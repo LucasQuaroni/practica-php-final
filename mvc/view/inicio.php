@@ -51,7 +51,7 @@
     <p>Por favor, inicia sesión o regístrate para acceder al contenido.</p>
     <div class="linea">
         <a href="index.php?controller=login&action=index">Iniciar Sesión</a>
-        <a href="index.php?controller=registro">Registrarse</a>
+        <a href="index.php?controller=registro&action=index">Registrarse</a>
     </div>
 
 </body>
